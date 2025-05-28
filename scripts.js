@@ -1,5 +1,5 @@
 //cotação de moedas do dia.
-const USD = 4.87;
+const USD = 4.86;
 const EUR = 5.32;
 const GBP = 6.08;
 
@@ -40,7 +40,9 @@ form.onsubmit=(event) => {
 // Funcao para convrter a moeda.
 function convertCurrency(amount,price,symbol){
 try{
-    description.textContent=`${symbol} 1 = ${price}`
+    //exbindo a cotacao da moeda selecionada
+    description.textContent=`${symbol} 1 = ${formatCurrencyBRL(price)}`
+
     //Aplica a classe que exibe o footer para mostrar o resultado
     footer.classList.add("show-result")
 } catch(error){
@@ -53,4 +55,13 @@ try{
     alert("Não foi possível converter. Tente novamente mais tarde.")
 
 }
+}
+//Formata a moeda em real brasileiro
+function formatCurrencyBRL(value){
+    //Converte para numero para utilizar o toLocaleString para formatar no padrao BRL (00,00)
+    return Number(value).toLocaleString("pt-BR",{
+    style:"currency",
+    currency: "BRL",    
+    })
+
 }

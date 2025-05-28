@@ -1,7 +1,7 @@
 //cotação de moedas do dia.
-const USD = 5.70
-const EUR = 5.32
-const GBP = 6.08
+const USD = 5.7
+const EUR = 6.42
+const GBP = 7.66
 
 //Obtendo os elementos do formulário
 const form = document.querySelector("form")
@@ -39,10 +39,17 @@ function convertCurrency(amount, price, symbol) {
   try {
     //exbindo a cotacao da moeda selecionada
     description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`
-
+    //CALCULA O TOTAL
     let total = amount * price
+    //Verifica se o resultado nao e um numero
+    if (isNaN(total)) {
+      return alert("Por favor, digite o valor corretamente para converter")
+    }
+
+    //Formata o valor total
+    total = formatCurrencyBRL(total).replace("R$", "")
     //Exibe o resultado total.
-    result.textContent = total
+    result.textContent = `${total} Reais`
 
     //Aplica a classe que exibe o footer para mostrar o resultado
     footer.classList.add("show-result")
